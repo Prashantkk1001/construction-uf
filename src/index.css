@@ -1,0 +1,16 @@
+/* 1. @import FIRST (before everything else) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* 2. Then Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3. Your custom styles */
+@layer base {
+  /* your base styles here */
+}
+
+@layer components {
+  /* your component styles here */
+}
