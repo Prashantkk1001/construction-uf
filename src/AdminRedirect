@@ -1,12 +1,11 @@
-// src/pages/AdminRedirect.tsx
 import { useEffect } from "react";
 
 const AdminRedirect = () => {
   useEffect(() => {
-    window.location.href = "https://rkconstruction-af.vercel.app";
+    window.location.replace("https://rkconstruction-af.vercel.app/");
   }, []);
 
-  return null; // काही render नको
+  return null;
 };
 
 export default AdminRedirect;
