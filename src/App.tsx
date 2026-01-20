@@ -16,7 +16,14 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 5 * 60 * 1000,  // 5 min
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -24,37 +31,39 @@ const App = () => (
       <Toaster />
       <Sonner />
 
-      <BrowserRouter>
+      {/* ✅ BrowserRouter - Clean basename */}
+      <BrowserRouter basename="/">
         <Navbar />
 
-        <main>
+        <main className="min-h-[calc(100vh-80px)]">
           <Routes>
-            {/* USER ROUTES */}
-            <Route path="/" element={<Index />} />
+            {/* ✅ PUBLIC USER ROUTES */}
+            <Route index element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:section?" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin-login" element={<AdminRedirect />} />
 
-            {/* 🔐 ADMIN REDIRECT ROUTE */}
-            <Route
-              path="/admin-login"
-              element={<Navigate to="https://rkconstruction-af.vercel.app" replace />}
+            {/* ✅ ADMIN EXTERNAL REDIRECT - Exact match */}
+            {/* <Route 
+              path="/admin-login" 
+              element={
+                <Navigate to="https://rkconstruction-af.vercel.app" replace />
+              } 
             />
 
-            {/* 404 */}
+            {/* ✅ 404 CATCH-ALL - Always LAST */}
             <Route path="*" element={<NotFound />} />
-          </Routes>
+          </Routes> */
         </main>
 
         <Footer />
         <WhatsAppButton />
       </BrowserRouter>
     </TooltipProvider>
-    
   </QueryClientProvider>
 );
-
 
 export default App;

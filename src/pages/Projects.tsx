@@ -43,21 +43,35 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const [showCategories, setShowCategories] = useState(true);
 
-  /* ================= FETCH PROJECTS ================= */
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await api.get("/projects");
-        setProjects(res.data);
-      } catch {
-        console.error("Failed to load projects");
-      } finally {
-        setLoading(false);
-      }
-    };
+  
 
-    fetchProjects();
-  }, []);
+  /* ================= FETCH PROJECTS ================= */
+ useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      const res = await api.get("/projects");
+
+      const BACKEND_URL =
+        "https://construction-backend-wtf2.onrender.com";
+
+      const projectsWithImages = res.data.map((project: any) => ({
+        ...project,
+        images: project.images.map((img: string) =>
+          img.startsWith("http") ? img : `${BACKEND_URL}${img}`
+        ),
+      }));
+
+      setProjects(projectsWithImages);
+    } catch (error) {
+      console.error("Failed to load projects", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchProjects();
+}, []);
+
 
   /* ================= FILTER ================= */
   const filteredProjects =
