@@ -36,7 +36,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="w-12 h-12 flex items-center justify-center">
               <img
-                src="public\rk logo\rklogo-removebg-preview.png"
+                src="/rk-logo/rklogo-removebg-preview.png"
                 alt="RK Constructions"
                 className="w-full h-full object-contain"
               />
