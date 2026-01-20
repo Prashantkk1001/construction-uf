@@ -69,7 +69,7 @@ const Contact = () => {
   /* ================= FETCH CONTACT ================= */
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/contact")
+    fetch("https://construction-backend-wtf2.onrender.com/api/contact")
       .then((res) => res.json())
       .then(setContact)
       .catch(() => console.log("Contact API error"));
@@ -87,7 +87,7 @@ const Contact = () => {
     setSuccess("");
 
     try {
-      await fetch("http://localhost:5000/api/enquiry", {
+      await fetch("https://construction-backend-wtf2.onrender.com/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -37,7 +37,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchContact = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/contact");
+        const res = await fetch("https://construction-backend-wtf2.onrender.com/api/contact");
         if (!res.ok) return;
         const data = await res.json();
         setContact(data);
