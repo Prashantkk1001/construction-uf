@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://construction-backend-wtf2.onrender.com/api", // backend URL
+  baseURL:
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000/api"
+      : "https://construction-backend-wtf2.onrender.com/api",
 });
 
 export default api;

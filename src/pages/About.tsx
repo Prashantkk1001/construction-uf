@@ -96,7 +96,7 @@ const About = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await api.get("/about");
+        const res = await api.get<AboutData>("/about");
         if (res.data) {
           setAboutData({
             constructionInfo: {
